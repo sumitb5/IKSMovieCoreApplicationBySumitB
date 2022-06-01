@@ -6,7 +6,7 @@ using System.Text;
 
 namespace MovieApp.Entity
 {
-    class MovieShowtimeModel
+    public class MovieShowtimeModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
