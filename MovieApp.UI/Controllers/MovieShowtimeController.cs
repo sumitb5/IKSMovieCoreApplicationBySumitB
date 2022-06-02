@@ -200,7 +200,7 @@ namespace MovieApp.UI.Controllers
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         ViewBag.status = "Success";
-                        ViewBag.message = "MovieShowTime-Updated-Successfuly!!";
+                        ViewBag.message = "MovieShowTime-Deleted-Successfuly!!";
                     }
                     else
                     {
