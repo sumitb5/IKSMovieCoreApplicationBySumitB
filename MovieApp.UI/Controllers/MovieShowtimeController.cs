@@ -24,7 +24,7 @@ namespace MovieApp.UI.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiURL"] + "MovieShowTime/SelectMovieShowTime";
+                string endPoint = _configuration["WebApiURL"] + "MovieShowtime/GetAllMovieShowtimes";
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -48,7 +48,7 @@ namespace MovieApp.UI.Controllers
 
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiURL"] + "Movie/SelectMovie";
+                string endPoint = _configuration["WebApiURL"] + "Movie/GetMovies";
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -69,7 +69,7 @@ namespace MovieApp.UI.Controllers
             }
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiURL"] + "Theatre/SelectTheatre";
+                string endPoint = _configuration["WebApiURL"] + "Theatre/SelectTheatres";
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -95,19 +95,19 @@ namespace MovieApp.UI.Controllers
         [HttpPost]
 
         // [ValidateAntiForgeryToken] [Bind("ShowId,MovieId,TheatreId,ShowTime,Date")]
-        public async Task<IActionResult> InsertMovieShowTimes(MovieShowtimeModel movieShowTimeModel)
+        public async Task<IActionResult> RegisterMovieShowTimes(MovieShowtimeModel movieShowTimeModel)
         {
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(movieShowTimeModel), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiURL"] + "MovieShowTime/InsertMovieShowTime";
+                string endPoint = _configuration["WebApiURL"] + "MovieShowtime/RegisterMovieShowtime";
                 using (var response = await client.PostAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         ViewBag.status = "Success";
                         ViewBag.message = "Inserted!";
-                        return RedirectToAction("ShowMovieTime", "MovieShowTime");
+                        //return RedirectToAction("ShowMovieTime", "MovieShowtime");
                     }
                     else
                     {
@@ -124,7 +124,7 @@ namespace MovieApp.UI.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiURL"] + "MovieShowTime/GetSpecificMovieShowTime?id=" + ShowId;
+                string endPoint = _configuration["WebApiURL"] + "MovieShowtime/GetMovieShowtimeById?id=" + ShowId;
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -149,7 +149,7 @@ namespace MovieApp.UI.Controllers
             using (HttpClient client = new HttpClient())
             {
                 StringContent content = new StringContent(JsonConvert.SerializeObject(movieShowTimeModel), Encoding.UTF8, "application/json");
-                string endPoint = _configuration["WebApiURL"] + "MovieShowTime/UpdateMovieShowTime";
+                string endPoint = _configuration["WebApiURL"] + "MovieShowtime/UpdateMovieShowtimeById";
                 using (var response = await client.PutAsync(endPoint, content))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -170,7 +170,7 @@ namespace MovieApp.UI.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                string endPoint = _configuration["WebApiURL"] + "MovieShowTime/GetSpecificMovieShowTime?id=" + ShowId;
+                string endPoint = _configuration["WebApiURL"] + "MovieShowtime/GetMovieShowtimeById?id=" + ShowId;
                 using (var response = await client.GetAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -194,7 +194,7 @@ namespace MovieApp.UI.Controllers
             using (HttpClient client = new HttpClient())
             {
 
-                string endPoint = _configuration["WebApiURL"] + "MovieShowTime/DeleteMovieShowTime?id=" + movieShowTimeModel.ShowId;
+                string endPoint = _configuration["WebApiURL"] + "MovieShowtime/DeleteMovieShowtimeById?id=" + movieShowtimeModel.ShowId;
                 using (var response = await client.DeleteAsync(endPoint))
                 {
                     if (response.StatusCode == System.Net.HttpStatusCode.OK)
